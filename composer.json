@@ -1,0 +1,25 @@
+{
+    "name": "martindilling/calculator",
+    "description": "Parse and calculate a mathematical expression in infix notation.",
+    "minimum-stability": "stable",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Martin Dilling-Hansen",
+            "email": "martindilling@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "~4.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Calculator\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Calculator\\Tests\\": "tests/"
+        }
+    }
+}
