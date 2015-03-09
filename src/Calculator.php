@@ -2,6 +2,12 @@
 
 class Calculator
 {
+    /**
+     * Evaluate a mathematical expression in infix notation.
+     *
+     * @param string $infix
+     * @return float
+     */
     public function evaluate($infix)
     {
         $parser = new InfixParser($infix);

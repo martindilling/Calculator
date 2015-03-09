@@ -10,8 +10,19 @@
  */
 class InfixParser
 {
+    /**
+     * @var string
+     */
     protected $regex = '(([0-9]*\.[0-9]+|[0-9]+|\+|-|\*|/)|\s+)';
+
+    /**
+     * @var array
+     */
     protected $tokens;
+
+    /**
+     * @var array
+     */
     protected $operators = [
         '+' => ['precedence' => 0],
         '-' => ['precedence' => 0],
@@ -19,18 +30,30 @@ class InfixParser
         '/' => ['precedence' => 1],
     ];
 
-    function __construct($infixString)
+    /**
+     * @param string $infixString
+     */
+    public function __construct($infixString)
     {
         $this->tokens = preg_split($this->regex, $infixString, null, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
         $this->tokens = array_map('trim', $this->tokens);
     }
 
-
+    /**
+     * Return an array of the token in infix notation.
+     *
+     * @return array
+     */
     public function getInfixTokens()
     {
         return $this->tokens;
     }
 
+    /**
+     * Return an array of the token in reverse polish notation.
+     *
+     * @return array
+     */
     public function getRPNTokens()
     {
         $stack  = new \SplStack();
@@ -60,7 +83,13 @@ class InfixParser
         return iterator_to_array($output);
     }
 
-    function isTopAnOperator(\SplStack $stack)
+    /**
+     * Is the item at the top of the stack an operator?
+     *
+     * @param \SplStack $stack
+     * @return bool
+     */
+    protected function isTopAnOperator(\SplStack $stack)
     {
         if (count($stack) == 0) {
             return false;
@@ -75,7 +104,14 @@ class InfixParser
         return true;
     }
 
-    function hasLowerPrecedence($o1, $o2)
+    /**
+     * Does the first operator have lower precedence than the second operator?
+     *
+     * @param string $o1
+     * @param string $o2
+     * @return bool
+     */
+    protected function hasLowerPrecedence($o1, $o2)
     {
         return $this->operators[$o1]['precedence'] <= $this->operators[$o2]['precedence'];
     }
