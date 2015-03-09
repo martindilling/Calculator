@@ -5,7 +5,7 @@ use Calculator\RPNCalculator;
 class RPNCalculatorTest extends \PHPUnit_Framework_TestCase
 {
     /** @test */
-    public function it_should_()
+    public function it_should_evaluate_a_tokenarray_in_reverse_polish_notation()
     {
         $rpnCalculator = new RPNCalculator();
 
